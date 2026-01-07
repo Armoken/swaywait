@@ -14,7 +14,10 @@
       };
       dmenu-systemd = pkgs.python3Packages.buildPythonApplication {
         pname = "swaywait";
-        version = "1.0";
+        version = "1.1";
+
+        pyproject = true;
+        build-system = [ pkgs.python3Packages.setuptools ];
 
         propagatedBuildInputs = with pkgs.python3Packages; [
           i3ipc # An improved Python library to control i3wm and sway
@@ -22,7 +25,7 @@
 
         src = ./.;
       };
-      python-with-packages = ((pkgs.python3Full.withPackages(ps: [
+      python-with-packages = ((pkgs.python3.withPackages(ps: [
         ps.i3ipc
 
         ps.ipython
